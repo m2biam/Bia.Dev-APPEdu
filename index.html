@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jogo da Memória - Fácil</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="manifest" href="manifest.json" />
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("sw.js")
+          .then(() => console.log("App pronto para uso offline!"))
+          .catch((err) => console.log("Erro ao registrar sw:", err));
+      }
+    </script>
+  </head>
+  <body>
+    <nav class="barra-navegacao">
+      <div class="nav-links">
+        <a href="index.html" class="ativo">Fácil</a>
+        <a href="#">Médio</a>
+        <a href="#">Difícil</a>
+        <a href="outrasatividades.html">Outras Atividades</a>
+      </div>
+    </nav>
+
+    <main
+      class="main-content"
+      style="flex-direction: column; align-items: center"
+    >
+      <header class="cabecalho">
+        <h1>Meu jogo da memória</h1>
+        <p>Desenvolvido por Bia Moreira.Dev</p>
+        <button id="btn-reiniciar" class="botao-memoria">
+          Jogar Novamente
+        </button>
+      </header>
+
+      <div class="tabuleiro" style="grid-template-columns: repeat(3, 130px)">
+        <div class="carta" data-animal="gato">
+          <div class="carta-conteudo">
+            <div class="face face-capa">🐾</div>
+            <div class="face face-imagem">
+              <img
+                src="1.png"
+                alt="Gato"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  border-radius: 15px;
+                  object-fit: cover;
+                "
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="carta" data-animal="gato">
+          <div class="carta-conteudo">
+            <div class="face face-capa">🐾</div>
+            <div
+              class="face face-imagem"
+              style="font-size: 20px; font-weight: bold; color: #333"
+            >
+              GATO
+            </div>
+          </div>
+        </div>
+
+        <div class="carta" data-animal="cachorro">
+          <div class="carta-conteudo">
+            <div class="face face-capa">🐾</div>
+            <div class="face face-imagem">
+              <img
+                src="2.png"
+                alt="Cachorro"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  border-radius: 15px;
+                  object-fit: cover;
+                "
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="carta" data-animal="cachorro">
+          <div class="carta-conteudo">
+            <div class="face face-capa">🐾</div>
+            <div
+              class="face face-imagem"
+              style="font-size: 20px; font-weight: bold; color: #333"
+            >
+              CACHORRO
+            </div>
+          </div>
+        </div>
+
+        <div class="carta" data-animal="elefante">
+          <div class="carta-conteudo">
+            <div class="face face-capa">🐾</div>
+            <div class="face face-imagem">
+              <img
+                src="3.png"
+                alt="Animal 3"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  border-radius: 15px;
+                  object-fit: cover;
+                "
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="carta" data-animal="elefante">
+          <div class="carta-conteudo">
+            <div class="face face-capa">🐾</div>
+            <div
+              class="face face-imagem"
+              style="font-size: 20px; font-weight: bold; color: #333"
+            >
+              ELEFANTE
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+    <div id="modal-parabens" class="modal" style="display: none">
+      <div class="modal-conteudo">
+        <h2>🌟 PARABÉNS! 🌟</h2>
+        <p>Você encontrou todos os pares!</p>
+        <button onclick="reiniciarJogo()" class="botao-memoria">
+          Jogar Novamente
+        </button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+    <footer style="text-align: center; padding: 20px">
+      <a
+        href="termos.html"
+        style="color: #666; text-decoration: none; margin: 0 10px"
+        >Termos de Uso</a
+      >
+      <a
+        href="disclaimer.html"
+        style="color: #666; text-decoration: none; margin: 0 10px"
+        >Aviso Legal</a
+      >
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <meta name="Author" content="Marília Moreira" />
+    <title>Caça-Palavras Fácil - Bia Moreira.Dev</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="manifest.json" />
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("sw.js")
+          .then(() => console.log("App pronto para uso offline!"))
+          .catch((err) => console.log("Erro ao registrar sw:", err));
+      }
+    </script>
+  </head>
+  <body>
+    <nav class="barra-navegacao">
+      <div class="nav-links">
+        <a href="caca-facil.html" class="ativo">Fácil</a>
+        <a href="#">Médio</a>
+        <a href="#">Difícil</a>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <div class="centralizador-jogo">
+        <h1 class="titulo-jogo">Caça-Palavras: Animais 🐾</h1>
+
+        <div class="layout-horizontal">
+          <div id="grid-letras" class="grid-8x8"></div>
+
+          <aside class="painel-lateral">
+            <h3>Ache estas palavras:</h3>
+            <ul id="lista-palavras">
+              <li id="item-GATO">GATO</li>
+              <li id="item-GIRAFA">GIRAFA</li>
+              <li id="item-ZEBRA">ZEBRA</li>
+              <li id="item-JACARE">JACARÉ</li>
+            </ul>
+            <button class="botao-jogar" onclick="window.location.reload()">
+              Novo Jogo
+            </button>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <div id="modal-vitoria" class="modal">
+      <div class="modal-conteudo">
+        <h2>🌟 INCRÍVEL! 🌟</h2>
+        <p id="mensagem-vitoria"></p>
+        <button onclick="location.reload()">Jogar Novamente</button>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script-caca-facil.js"></script>
+    <footer style="text-align: center; padding: 20px">
+      <a
+        href="termos.html"
+        style="color: #666; text-decoration: none; margin: 0 10px"
+        >Termos de Uso</a
+      >
+      <a
+        href="disclaimer.html"
+        style="color: #666; text-decoration: none; margin: 0 10px"
+        >Aviso Legal</a
+      >
+    </footer>
+  </body>
+</html>

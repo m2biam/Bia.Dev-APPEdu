@@ -1,0 +1,430 @@
+/* ========================================================= */
+/* 1. BASE E BARRA VERDE (COM AS SUAS CLASSES)               */
+/* ========================================================= */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4fdf4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.barra-navegacao {
+    width: 100%;
+    background-color: #2e7d32;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px 10px;
+    flex-wrap: wrap;
+}
+
+.nav-links a { 
+    color: white; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 18px; 
+    padding: 5px 10px;
+    transition: 0.3s;
+}
+
+.nav-links a.ativo, 
+.nav-links a:hover { 
+    border-bottom: 3px solid #a5d6a7; 
+    color: #a5d6a7; 
+}
+
+/* ========================================================= */
+/* 2. ALINHAMENTO DO TÍTULO E LAYOUT GERAL                   */
+/* ========================================================= */
+.main-content {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.centralizador-jogo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha o título exatamente no começo do grid */
+}
+
+.titulo-jogo { 
+    color: #2e7d32; 
+    margin-top: 0; 
+    margin-bottom: 20px; 
+    font-size: 28px; 
+}
+
+.layout-horizontal { 
+    display: flex !important; 
+    gap: 25px; 
+    align-items: flex-start; 
+}
+
+/* ========================================================= */
+/* 3. GRIDS DO CAÇA-PALAVRAS (FÁCIL, MÉDIO E DIFÍCIL)        */
+/* ========================================================= */
+.grid-8x8 { display: grid !important; grid-template-columns: repeat(8, 45px); grid-template-rows: repeat(13, 45px); gap: 6px; background: #e8f5e9; padding: 12px; border-radius: 12px; border: 4px solid #2e7d32; }
+.grid-8x8 .letra { width: 45px; height: 45px; font-size: 20px; }
+
+.grid-10x15 { display: grid !important; grid-template-columns: repeat(10, 38px); grid-template-rows: repeat(15, 38px); gap: 5px; background: #e8f5e9; padding: 10px; border-radius: 10px; border: 3px solid #2e7d32; }
+.grid-10x15 .letra { width: 38px; height: 38px; font-size: 18px; }
+
+.grid-12x16 { display: grid !important; grid-template-columns: repeat(12, 32px); grid-template-rows: repeat(16, 32px); gap: 3px; background: #e8f5e9; padding: 8px; border-radius: 8px; border: 3px solid #2e7d32; }
+.grid-12x16 .letra { width: 32px; height: 32px; font-size: 15px; }
+
+.letra { background: white; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; border-radius: 4px; user-select: none; }
+.letra.selecionada { background-color: #ffeb3b; }
+.letra.correta { background-color: #4caf50 !important; color: white !important; }
+
+
+.cabecalho {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.cabecalho h1 { color: #2e7d32; margin-bottom: 5px; }
+.cabecalho p { margin-top: 0; color: #555; }
+
+/* O seu grid original */
+.tabuleiro {
+    display: grid !important;
+    grid-template-columns: repeat(4, 130px); /* 4 colunas */
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* Estrutura 3D para a carta girar */
+.carta {
+    width: 130px;
+    height: 180px;
+    perspective: 1000px; /* Dá o efeito de profundidade 3D */
+    cursor: pointer;
+}
+
+.carta-conteudo {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.6s;
+    transform-style: preserve-3d; /* Permite o giro frente/verso */
+}
+
+/* Classe que o  JS provavelmente adiciona quando a carta é clicada */
+.carta.virada .carta-conteudo {
+    transform: rotateY(180deg);
+}
+
+/* Estilo comum para as duas faces (frente e verso) */
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Esconde as costas da carta */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.1);
+}
+
+/* O verso da carta (com a patinha) */
+.face-capa {
+    background-color: #4caf50;
+    font-size: 50px;
+}
+
+/* A frente da carta (com a imagem do animal ou texto) */
+.face-imagem {
+    background-color: white;
+    transform: rotateY(180deg); /* Já fica virada de costas esperando a animação */
+    border: 2px solid #4caf50;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Responsividade do Tabuleiro no celular */
+@media (max-width: 768px) {
+    .tabuleiro { grid-template-columns: repeat(2, 130px); }
+}
+
+/* ========================================================= */
+/* 5. PAINEL LATERAL E BOTÕES                                */
+/* ========================================================= */
+.painel-lateral { background: white; padding: 20px; border-radius: 8px; border: 2px solid #2e7d32; width: 220px; box-sizing: border-box; }
+.painel-lateral h3 { margin-top: 0; color: #2e7d32; }
+.painel-lateral ul { list-style: none; padding: 0; }
+.painel-lateral li { margin-bottom: 10px; font-weight: bold; }
+.palavra-encontrada { text-decoration: line-through; color: #bbb; font-style: italic; }
+
+.botao-jogar { background: #2e7d32; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 10px; font-size: 16px; }
+
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 1000; }
+.modal-conteudo { background: white; padding: 30px; border-radius: 15px; text-align: center; }
+
+/* ========================================================= */
+/* 6. RESPONSIVO PARA CELULAR                                */
+/* ========================================================= */
+@media (max-width: 768px) {
+    .layout-horizontal { flex-direction: column; align-items: center; gap: 15px; }
+    .centralizador-jogo { align-items: center; } /* Centraliza o título no celular */
+    .painel-lateral { width: 100%; max-width: 350px; }
+    
+    /* Encolhendo os grids para caber na tela */
+    .grid-8x8 { grid-template-columns: repeat(8, 35px); grid-template-rows: repeat(13, 35px); padding: 8px; }
+    .grid-8x8 .letra { width: 35px; height: 35px; font-size: 16px; }
+    
+    .grid-10x15 { grid-template-columns: repeat(10, 28px); grid-template-rows: repeat(15, 28px); gap: 3px; padding: 6px; }
+    .grid-10x15 .letra { width: 28px; height: 28px; font-size: 14px; }
+    
+    .grid-12x16 { grid-template-columns: repeat(12, 23px); grid-template-rows: repeat(16, 23px); gap: 2px; padding: 5px; }
+    .grid-12x16 .letra { width: 23px; height: 23px; font-size: 12px; }
+    
+    /* Memória com 2 colunas no celular */
+    .container-memoria { grid-template-columns: repeat(2, 130px) !important; }
+}
+
+/* BOTÃO ESPECÍFICO PARA A MEMÓRIA */
+.botao-memoria {
+    background: #2e7d32; 
+    color: white; 
+    border: none; 
+    padding: 10px 30px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    font-size: 16px; 
+    margin: 10px auto 20px auto; 
+    display: block; /* Garante que ele fique centralizado e pequeno */
+}
+
+/* =========================================
+   ESTILOS DA PÁGINA "OUTRAS ATIVIDADES"
+   ========================================= */
+
+.container-menu {
+  text-align: center;
+  padding: 40px 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.titulo-sessao {
+  color: #388e3c; /* Aquele verde bonito do projeto */
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.menu-jogos {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap; /* Faz os cartões descerem se a tela do celular for menor */
+}
+
+/* O visual do cartão branco com borda verde */
+.card-jogo {
+  background-color: #ffffff;
+  border: 3px solid #388e3c;
+  border-radius: 20px;
+  padding: 30px 20px;
+  width: 260px;
+  text-decoration: none;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1); /* Uma sombrinha leve para dar destaque */
+  transition: transform 0.2s; /* Animação suave */
+}
+
+/* Efeito de pular quando passa o mouse ou toca */
+.card-jogo:hover {
+  transform: translateY(-8px);
+}
+
+.card-jogo h3 {
+  margin: 15px 0 10px 0;
+  font-size: 24px;
+  color: #388e3c;
+}
+
+.card-jogo p {
+  font-size: 16px;
+  margin-bottom: 25px;
+  color: #666;
+}
+
+.icone {
+  font-size: 60px; /* Emojis bem grandes */
+}
+
+/* O botão de JOGAR */
+ 
+.botao-jogar {
+  width: 50%;           /* Define a metade do tamanho */
+  display: block;        /* Garante que o botão se comporte como um bloco */
+  margin: 0 auto 20px;   /* '0 auto' centraliza horizontalmente / '20px' dá espaço do fundo */
+  
+  /* Ajustes extras para ficar "bonitão" */
+  padding: 12px 0;       /* Mais conforto para o clique */
+  border-radius: 10px;   /* Formato de pílula, que combina com o tema infantil */
+  font-size: 14px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+
+/* Os cartões de "Em breve" que eu criei*/
+.bloqueado {
+  opacity: 0.6;
+  cursor: not-allowed;
+  border-color: #999;
+}
+
+.bloqueado h3 {
+  color: #777;
+}
+
+ 
+
+@media (max-width: 600px) {
+  /* Arruma o menu verde para os links não ficarem espremidos */
+  .nav-links {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 15px !important;
+  }
+
+  /* FORÇA o tabuleiro a ter 4 colunas exatas, sem vazar da tela */
+  .tabuleiro {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 6px !important; /* Espacinho pequeno entre as cartas */
+    width: 100% !important;
+    max-width: 100vw !important;
+    padding: 10px !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important;
+  }
+
+  /* Esmaga as cartas para caberem nas 4 colunas e ficarem mais baixinhas */
+  .carta {
+    width: 100% !important;
+    height: 85px !important; 
+    margin: 0 !important; /* Tira qualquer margem antiga que esteja atrapalhando */
+  }
+
+  /* Ajusta o tamanho da patinha para o celular */
+  .face-capa {
+    font-size: 28px !important;
+  }
+
+  /* Ajusta o texto da carta virada (ex: CACHORRO) para não estourar a carta */
+  .face-imagem {
+    font-size: 10px !important;
+    padding: 2px !important;
+    word-break: break-word !important; /* Quebra a palavra no meio se for muito grande */
+    line-height: 1.2 !important;
+  }
+}
+
+/* =========================================
+   PÁGINAS LEGAIS (Termos e Disclaimer)
+   ========================================= */
+
+/* Fundo consistente com o Login */
+.body-legal {
+    background: linear-gradient(135deg, #1b4d2e 0%, #0d2617 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px 20px; /* Espaço para não encostar no topo no mobile */
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinha no topo para permitir scroll se o texto for longo */
+}
+
+/* Card de Conteúdo */
+.card-legal {
+    background: white;
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    width: 100%;
+    max-width: 800px; /* Um pouco mais largo para facilitar a leitura */
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Títulos */
+.card-legal h1 {
+    color: #1b4d2e;
+    font-size: 28px;
+    margin-bottom: 25px;
+    text-align: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+}
+
+.card-legal h2 {
+    color: #2e7d32;
+    font-size: 20px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+/* Texto e Parágrafos */
+.card-legal p, .card-legal li {
+    color: #444;
+    font-size: 16px;
+    line-height: 1.6; /* Espaçamento entre linhas para não cansar a vista */
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+/* Lista de itens */
+.card-legal ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+/* Botão Voltar (Estilo Pílula) */
+.btn-voltar {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 30px;
+    background-color: #f5f5f5;
+    color: #1b4d2e;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    border: 1px solid #ddd;
+}
+
+.btn-voltar:hover {
+    background-color: #eee;
+    transform: translateX(-5px); /* Efeito de "voltar" */
+}
+
+/* Animação de entrada */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="Author" content="Marília Moreira" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Caça Palavras</title>
+    <link rel="manifest" href="manifest.json" />
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("sw.js")
+          .then(() => console.log("App pronto para uso offline!"))
+          .catch((err) => console.log("Erro ao registrar sw:", err));
+      }
+    </script>
+  </head>
+
+  <body>
+    <main class="container-menu">
+      <h2 class="titulo-sessao">Escolha uma Atividade</h2>
+
+      <div class="menu-jogos">
+        <a href="caca-facil.html" class="card-jogo">
+          <div class="icone">🔍</div>
+          <h3>Caça-Palavras</h3>
+          <p>Encontre os nomes dos animais!</p>
+          <span class="botao-jogar">JOGAR</span>
+        </a>
+
+        <div class="card-jogo bloqueado">
+          <div class="icone">🧩</div>
+          <h3>Quebra-Cabeça</h3>
+          <p>Em breve uma nova aventura...</p>
+        </div>
+
+        <div class="card-jogo bloqueado">
+          <div class="icone">🎨</div>
+          <h3>Colorir</h3>
+          <p>Prepare os seus lápis virtuais!</p>
+        </div>
+      </div>
+    </main>
+    <footer style="text-align: center; padding: 20px">
+      <a
+        href="termos.html"
+        style="color: #666; text-decoration: none; margin: 0 10px"
+        >Termos de Uso</a
+      >
+      <a
+        href="disclaimer.html"
+        style="color: #666; text-decoration: none; margin: 0 10px"
+        >Aviso Legal</a
+      >
+    </footer>
+  </body>
+</html>
