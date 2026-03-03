@@ -21,5 +21,5 @@ Um Progressive Web App (PWA) de jogos educativos infantis, desenvolvido com foco
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/Meuapp-edu-gratis
+   git clone https://github.com/m2biam/Bia.Dev-APPEdu
    ```
