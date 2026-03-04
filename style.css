@@ -102,12 +102,20 @@ body {
 
 /* O seu grid original */
 .tabuleiro {
-    display: grid !important;
-    grid-template-columns: repeat(4, 130px); /* 4 colunas */
-    gap: 15px;
-    justify-content: center;
-    margin-top: 20px;
-    width: 100%;
+    display: grid;
+    /* Aqui está a mágica: 3 colunas iguais que se ajustam à tela */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 15px;             /* Espaço entre as cartas */
+    width: 95%;            /* Ocupa quase toda a largura do celular */
+    max-width: 400px;      /* Não deixa o jogo ficar gigante no computador */
+    margin: 20px auto;     /* Centraliza o tabuleiro na tela */
+}
+
+.carta {
+    aspect-ratio: 1 / 1;   /* Garante que a carta seja sempre um quadrado perfeito */
+    width: 100%;           /* A carta preenche o espaço da coluna do grid */
+    cursor: pointer;
+    perspective: 1000px;
 }
 
 /* Estrutura 3D para a carta girar */
