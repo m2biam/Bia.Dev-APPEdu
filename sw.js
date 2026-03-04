@@ -9,8 +9,8 @@ const assets = [
   '1.png',
   '2.png',
   '3.png',
-  'icone-192.png',
-  'icone-512.png'
+  '192.png',
+  '512.png'
 ];
 
 // Instala o Service Worker e guarda os arquivos no cache
