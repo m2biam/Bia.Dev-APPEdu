@@ -312,8 +312,8 @@ body {
  
 
  
-@@media (max-width: 600px) {
-  /* 1. Mantém o menu centralizado */
+@media (max-width: 600px) {
+  /* 1. Mantém seu menu organizado */
   .nav-links {
     display: flex !important;
     flex-wrap: wrap !important;
@@ -321,26 +321,29 @@ body {
     gap: 15px !important;
   }
 
-  /* 2. O TABULEIRO: Agora focado em 2 colunas perfeitas e centralizadas */
+  /* 2. O TABULEIRO: Centralização Total */
   .tabuleiro {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important; /* Suas 2 colunas desejadas */
-    gap: 20px !important;            /* Espaço entre as cartas */
+    /* Mantemos as 2 colunas que você gostou */
+    grid-template-columns: repeat(2, auto) !important; 
     
-    width: 85% !important;           /* Ocupa a maior parte da tela, mas com margem lateral */
-    margin: 30px auto !important;     /* O 'auto' é o que centraliza o jogo na tela */
+    /* Centraliza o conjunto das colunas na tela */
+    justify-content: center !important; 
+    /* Centraliza as cartas dentro de cada espaço */
+    justify-items: center !important;   
     
-    justify-content: center !important; /* Garante o centro horizontal do grid */
-    justify-items: center !important;   /* Alinha cada carta no meio da sua coluna */
+    gap: 20px !important;
+    width: 100% !important;
+    margin: 30px 0 !important; /* Espaço em cima e embaixo */
     padding: 0 !important;
   }
 
-  /* 3. AS CARTAS: Quadradas e com tamanho limite */
+  /* 3. AS CARTAS: Tamanho controlado para não esticar */
   .carta {
-    width: 100% !important;
-    max-width: 150px !important;      /* Evita que fiquem gigantes em celulares largos */
-    aspect-ratio: 1 / 1 !important;   /* Sempre quadradinho */
-  
+    width: 140px !important;  /* Tamanho ideal para 2 colunas no celular */
+    height: 140px !important;
+    aspect-ratio: 1 / 1 !important;
+  }
 }
 
   /* Ajusta o tamanho da patinha para o celular */
