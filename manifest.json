@@ -3,12 +3,12 @@
   "name": "Jogos Educativos - Bia Moreira.Dev",
   "icons": [
     {
-      "src": "icone-192.png",
+      "src": "192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "icone-512.png",
+      "src": "512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
