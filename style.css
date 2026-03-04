@@ -311,10 +311,9 @@ body {
 
  
 
-@/* Esta é a "caixa" para celular */
-@media (max-width: 600px) {
-
-  /* Regra 1: O menu verde (você já tem isso) */
+ 
+@@media (max-width: 600px) {
+  /* 1. Mantém o menu centralizado */
   .nav-links {
     display: flex !important;
     flex-wrap: wrap !important;
@@ -322,23 +321,27 @@ body {
     gap: 15px !important;
   }
 
-  /* Regra 2: O Tabuleiro (AQUI está o segredo das 3 colunas) */
+  /* 2. O TABULEIRO: Agora focado em 2 colunas perfeitas e centralizadas */
   .tabuleiro {
     display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important; /* FORÇA 3 colunas iguais */
-    gap: 10px !important;                             /* Espaço entre as cartas */
-    width: 90% !important;                            /* Afasta das bordas laterais */
-    margin: 20px auto !important;                     /* Centraliza o jogo na tela */
+    grid-template-columns: repeat(2, 1fr) !important; /* Suas 2 colunas desejadas */
+    gap: 20px !important;            /* Espaço entre as cartas */
+    
+    width: 85% !important;           /* Ocupa a maior parte da tela, mas com margem lateral */
+    margin: 30px auto !important;     /* O 'auto' é o que centraliza o jogo na tela */
+    
+    justify-content: center !important; /* Garante o centro horizontal do grid */
+    justify-items: center !important;   /* Alinha cada carta no meio da sua coluna */
     padding: 0 !important;
   }
 
-  /* Regra 3: As Cartas */
+  /* 3. AS CARTAS: Quadradas e com tamanho limite */
   .carta {
-    width: 100% !important; 
-    aspect-ratio: 1 / 1 !important; /* Garante que sejam quadrados perfeitos */
-  }
-
-} /* Aqui fecha a "caixa" do celular */
+    width: 100% !important;
+    max-width: 150px !important;      /* Evita que fiquem gigantes em celulares largos */
+    aspect-ratio: 1 / 1 !important;   /* Sempre quadradinho */
+  
+}
 
   /* Ajusta o tamanho da patinha para o celular */
   .face-capa {
