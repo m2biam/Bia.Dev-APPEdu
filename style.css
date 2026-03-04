@@ -311,8 +311,10 @@ body {
 
  
 
+@/* Esta é a "caixa" para celular */
 @media (max-width: 600px) {
-  /* Arruma o menu verde para os links não ficarem espremidos */
+
+  /* Regra 1: O menu verde (você já tem isso) */
   .nav-links {
     display: flex !important;
     flex-wrap: wrap !important;
@@ -320,24 +322,23 @@ body {
     gap: 15px !important;
   }
 
-  /* FORÇA o tabuleiro a ter 4 colunas exatas, sem vazar da tela */
+  /* Regra 2: O Tabuleiro (AQUI está o segredo das 3 colunas) */
   .tabuleiro {
     display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 6px !important; /* Espacinho pequeno entre as cartas */
-    width: 100% !important;
-    max-width: 100vw !important;
-    padding: 10px !important;
-    box-sizing: border-box !important;
-    margin: 0 auto !important;
+    grid-template-columns: repeat(3, 1fr) !important; /* FORÇA 3 colunas iguais */
+    gap: 10px !important;                             /* Espaço entre as cartas */
+    width: 90% !important;                            /* Afasta das bordas laterais */
+    margin: 20px auto !important;                     /* Centraliza o jogo na tela */
+    padding: 0 !important;
   }
 
-  /* Esmaga as cartas para caberem nas 4 colunas e ficarem mais baixinhas */
+  /* Regra 3: As Cartas */
   .carta {
-    width: 100% !important;
-    height: 85px !important; 
-    margin: 0 !important; /* Tira qualquer margem antiga que esteja atrapalhando */
+    width: 100% !important; 
+    aspect-ratio: 1 / 1 !important; /* Garante que sejam quadrados perfeitos */
   }
+
+} /* Aqui fecha a "caixa" do celular */
 
   /* Ajusta o tamanho da patinha para o celular */
   .face-capa {
