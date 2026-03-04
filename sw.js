@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jogos-educativos-v1';
+const CACHE_NAME = 'jogos-educativos-v2';
 const assets = [
   '/',
   'index.html',

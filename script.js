@@ -2,15 +2,31 @@
 const cartas = document.querySelectorAll('.carta');
 let primeiraCarta = null;
 let segundaCarta = null;
-let bloqueiaTabuleiro = false;
+let bloqueiaTabuleiro = true; // Começa como TRUE para o "Preview" da APAE
 let paresEncontrados = 0;
-
-// Calcula automaticamente quantos pares existem no seu HTML (se tiver 6 cartas, são 3 pares)
 const totalPares = cartas.length / 2; 
 
-// 2. Função de Virar a Carta
+// 2. Função de Inicialização (O "Preview" da APAE)
+function prepararAmbiente() {
+    embaralhar();
+
+    // Vira todas as cartas para cima para a criança ver
+    cartas.forEach(carta => carta.classList.add('virada'));
+
+    // Espera 5 segundos (5000ms) e depois desvira
+    setTimeout(() => {
+        cartas.forEach(carta => {
+            // Só desvira se a carta ainda não foi "encontrada" (caso use reiniciar no meio do jogo)
+            carta.classList.remove('virada');
+        });
+        
+        bloqueiaTabuleiro = false; // AGORA libera o jogo para a criança clicar
+        console.log("Memorização terminada. Valendo!");
+    }, 5000); 
+}
+
+// 3. Função de Virar a Carta
 function virarCarta() {
-    // Proteção: não vira se o tabuleiro estiver travado, se clicar na mesma carta ou se já estiver virada
     if (bloqueiaTabuleiro || this === primeiraCarta || this.classList.contains('virada')) return;
 
     this.classList.add('virada');
@@ -24,24 +40,23 @@ function virarCarta() {
     checarPar();
 }
 
-// 3. Função de Checar o Par
+// 4. Função de Checar o Par
 function checarPar() {
     let animal1 = primeiraCarta.dataset.animal;
     let animal2 = segundaCarta.dataset.animal;
 
     if (animal1 === animal2) {
         // --- ACERTOU! ---
-        new Audio('acerto.mp3').play().catch(e => console.log("Erro som:", e));
+        // Usando o caminho ./ e minúsculo para não dar erro no GitHub
+        new Audio('./acerto.mp3').play().catch(e => console.log("Erro som:", e));
         
         paresEncontrados++;
         desabilitarCartas();
 
-        // VERIFICA VITÓRIA
         if (paresEncontrados === totalPares) {
             setTimeout(() => {
-                new Audio('sucesso.mp3').play().catch(e => console.log("Erro som:", e));
+                new Audio('./sucesso.mp3').play().catch(e => console.log("Erro som:", e));
                 
-                // Abre o modal sem usar jQuery (mais seguro)
                 const modal = document.getElementById('modal-parabens');
                 if (modal) {
                     modal.style.display = 'flex';
@@ -59,7 +74,7 @@ function checarPar() {
     }
 }
 
-// 4. Funções de Apoio
+// 5. Funções de Apoio
 function desabilitarCartas() {
     primeiraCarta.removeEventListener('click', virarCarta);
     segundaCarta.removeEventListener('click', virarCarta);
@@ -79,23 +94,24 @@ function embaralhar() {
     });
 }
 
-// 5. Inicialização
+// 6. Inicialização e Eventos
 cartas.forEach(carta => carta.addEventListener('click', virarCarta));
-embaralhar();
 
-// Botões de Reiniciar (O do topo e o de dentro do modal)
+// Chama o preview assim que a página carrega
+prepararAmbiente();
+
+// Funções de Reiniciar
+function reiniciarJogo() {
+    window.location.reload();
+}
+
 const botoesReiniciar = [
     document.getElementById('btn-reiniciar'),
-    document.getElementById('btn-reiniciar-modal') // Caso queira um ID específico no modal
+    document.getElementById('btn-reiniciar-modal')
 ];
 
 botoesReiniciar.forEach(btn => {
     if (btn) {
-        btn.onclick = () => window.location.reload();
+        btn.onclick = () => reiniciarJogo();
     }
 });
-
-// Função global para garantir que o HTML encontre o comando de reiniciar
-function reiniciarJogo() {
-    window.location.reload();
-}
