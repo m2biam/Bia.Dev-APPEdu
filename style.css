@@ -1,6 +1,10 @@
 /* ========================================================= */
 /* 1. BASE E BARRA VERDE (COM AS SUAS CLASSES)               */
 /* ========================================================= */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: #f4fdf4;
@@ -379,38 +383,31 @@ body {
 /* Card de Conteúdo */
 .card-legal {
     background: white;
-    padding: 40px;
+    padding: 40px; /* Padding para computador */
     border-radius: 30px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     width: 100%;
-    max-width: 650px; /* Um pouco mais largo para facilitar a leitura */
+    max-width: 620px; 
     animation: fadeIn 0.6s ease-out;
+    /* Garante que o card nunca ultrapasse a tela */
+    box-sizing: border-box; 
 }
 
-/* Títulos */
-.card-legal h1 {
-    color: #1b4d2e;
-    font-size: 28px;
-    margin-bottom: 25px;
-    text-align: center;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 15px;
-}
+/* Ajuste específico para Celulares */
+@media (max-width: 600px) {
+    .card-legal {
+        padding: 20px; /* Reduz o espaço interno no celular */
+        border-radius: 20px;
+    }
+    
+    .card-legal h1 {
+        font-size: 22px; /* Diminui um pouco o título para não quebrar tanto */
+    }
 
-.card-legal h2 {
-    color: #2e7d32;
-    font-size: 20px;
-    margin-top: 25px;
-    margin-bottom: 10px;
-}
-
-/* Texto e Parágrafos */
-.card-legal p, .card-legal li {
-    color: #444;
-    font-size: 16px;
-    line-height: 1.6; /* Espaçamento entre linhas para não cansar a vista */
-    margin-bottom: 15px;
-    text-align: justify;
+    .card-legal p, .card-legal li {
+        font-size: 15px; /* Ajuste leve no tamanho da fonte */
+        text-align: left; /* Justificar no celular às vezes cria buracos brancos estranhos */
+    }
 }
 
 /* Lista de itens */
