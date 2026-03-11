@@ -383,7 +383,7 @@ body {
     border-radius: 30px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     width: 100%;
-    max-width: 800px; /* Um pouco mais largo para facilitar a leitura */
+    max-width: 700px; /* Um pouco mais largo para facilitar a leitura */
     animation: fadeIn 0.6s ease-out;
 }
 
